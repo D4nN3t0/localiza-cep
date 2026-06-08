@@ -30,7 +30,7 @@ public class ConsumoApi {
             System.out.println("Error: "+e.getMessage());
         }
         finally {
-            System.out.println("Operação finalizada.");
+            System.out.println("Operação concluída.");
         }
         var json = response.body();
 
