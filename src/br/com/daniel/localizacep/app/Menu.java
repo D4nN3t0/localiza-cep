@@ -3,16 +3,17 @@ package br.com.daniel.localizacep.app;
 import br.com.daniel.localizacep.exception.CepInvalidoException;
 import br.com.daniel.localizacep.model.Endereco;
 import br.com.daniel.localizacep.service.ConsumoApi;
+import br.com.daniel.localizacep.util.GeradorDeArquivo;
 
 import java.util.Scanner;
 
 public class Menu {
     private final Scanner leitura = new Scanner(System.in);
     private final ConsumoApi consumoApi = new ConsumoApi();
+    private final GeradorDeArquivo gerarArquivo = new GeradorDeArquivo();
 
     public void exibeMenu() {
-        boolean isLeave = false;
-        while (!isLeave) {
+        while (true) {
             System.out.println("""
                     =======================================================
                     Bem-vindo ao LOCALIZA C.E.P!
@@ -32,6 +33,7 @@ public class Menu {
 
                 Endereco endereco = consumoApi.consultaCep(cep);
                 System.out.println(endereco);
+                gerarArquivo.salvarJson(endereco);
 
             } catch (CepInvalidoException e) {
 
